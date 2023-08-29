@@ -12,6 +12,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, notice: "Taskを登録しました！"
     else
+      flash.now[:danger] = "Taskの登録に失敗しました"
       render :new
     end
   end
@@ -26,16 +27,27 @@ class TasksController < ApplicationController
   
   def update
     @task = Task.find(params[:id])
-    if @task.update
+    if @task.update(task_params)
       redirect_to tasks_path, notice: "Taskを更新しました！"
     else
+      flash.now[:danger] = "Taskの更新に失敗しました"
       render :edit
+    end
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    if @task.destroy
+      redirect_to tasks_path, notice: "Taskを削除しました！"
+    else
+      flash.now[:danger] = "Taskの削除に失敗しました"
+      render :index
     end
   end
 
   private
 
   def task_params
-    params.require(tasks).permit(:title, :content)
+    params.require(:task).permit(:title, :content)
   end
 end

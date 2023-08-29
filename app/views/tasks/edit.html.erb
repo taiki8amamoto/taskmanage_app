@@ -1,5 +1,4 @@
 <h2>Taskを編集する</h2>
-
 <%= form_with( model: @task, local: true) do |form| %>
   <% if @task.errors.any? %>
   <div id="error_expanation">
@@ -12,7 +11,6 @@
     </ul>
   </div>
 <% end %>
-
   <div class="task_title">
     <%= form.label :title %>
     <%= form.text_field :title %>
@@ -22,5 +20,4 @@
   <%= form.text_field :content %>
   </div>
   <%= form.submit "更新する" %>
-
 <% end %>
