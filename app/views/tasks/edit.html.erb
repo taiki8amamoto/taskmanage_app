@@ -13,11 +13,11 @@
 <% end %>
   <div class="task_title">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, required: true %>
   </div>
   <div class="task_content">
   <%= form.label :content %>
-  <%= form.text_field :content %>
+  <%= form.text_field :content, required: true %>
   </div>
   <%= form.submit "更新する" %>
 <% end %>
