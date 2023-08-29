@@ -1,2 +1,26 @@
-<h1>Tasks#new</h1>
-<p>Find me in app/views/tasks/new.html.erb</p>
+<h2>Taskを作成する</h2>
+
+<%= form_with( model: @task, local: true ) do |form| %>
+  <% if @task.errors.any? %>
+  <div id="error_expanation">
+    <h2><%= @task.errors.count %>件のエラーがあります。</h2>
+    <ul>
+
+    <% @task.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="task_title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="task_content">
+  <%= form.label :content %>
+  <%= form.text_field :content %>
+  </div>
+  <%= form.submit "確定する" %>
+
+<% end %>
