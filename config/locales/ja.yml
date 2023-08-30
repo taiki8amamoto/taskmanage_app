@@ -190,6 +190,7 @@ ja:
       task_list: Task一覧
       title: タイトル
       content: 内容
+      created_at: 登録日時
       new: 新しくTaskを投稿する
       show: Taskの詳細を確認する
       edit: Taskを編集する

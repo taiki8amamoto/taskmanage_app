@@ -1,14 +1,16 @@
 <h1><%= t('.task_list') %></h1>
 <table>
   <tr>
-    <th><%= t('.title') %><th>
+    <th><%= t('.title') %></th>
     <th><%= t('.content') %></th>
+    <th><%= t('.created_at') %></th>
   </tr>
 
   <% @tasks.each do |task| %>
     <tr>
-      <td><%= task.title %></td>
-      <td><%= task.content %></td>
+      <td class='task_row' ><%= task.title %></td>
+      <td class='task_row' ><%= task.content %></td>
+      <td class='task_row' ><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
       <td><%= link_to t('.show'), task_path(task.id) %></td>
       <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')} %></td>
       <td><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: {confirm: t('.confirm_destroy')} %></td>
