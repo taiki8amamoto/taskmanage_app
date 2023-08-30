@@ -1,24 +1,25 @@
-# README
+## Userモデル
+- usersテーブル
+  - name:string
+  - email:string
+  - password_digest:string
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Taskモデル
+- tasksテーブル
+  - title:string
+  - content:text
+  - expiry:date
+  - priority:string
+  - status:string
 
-Things you may want to cover:
+## Labelモデル
+- labelsテーブル
+  - user_id:string
+  - task_id:string
 
-* Ruby version
+## Gemのバージョン情報
+[Gemfile](/Gemfile)と[Gemfile.lock](/Gemfile.lock)を参照
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## デプロイ方法
+- `git push heroku master`
+- `heroku run rails db:migrate`
