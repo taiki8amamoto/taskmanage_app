@@ -80,6 +80,10 @@ GEM
     crass (1.0.6)
     date (3.3.3)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -126,6 +130,8 @@ GEM
       net-protocol
     nio4r (2.5.9)
     nokogiri (1.15.4-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     pg (1.5.3)
     public_suffix (5.0.3)
@@ -248,16 +254,21 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  dotenv-rails
   factory_bot_rails
   faker
   jbuilder (~> 2.7)
   launchy
   listen (~> 3.3)
+  net-imap
+  net-pop
+  net-smtp
   pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
