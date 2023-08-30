@@ -1,12 +1,14 @@
 class TasksController < ApplicationController
+  before_action :basic
+
   def index
     @tasks = Task.all.order("created_at DESC")
   end
-
+  
   def new
     @task = Task.new
   end
-
+  
   def create
     @task = Task.new(task_params)
     if @task.save
@@ -16,11 +18,11 @@ class TasksController < ApplicationController
       render :new
     end
   end
-
+  
   def show
     @task = Task.find(params[:id])
   end
-
+  
   def edit
     @task = Task.find(params[:id])
   end
@@ -34,7 +36,7 @@ class TasksController < ApplicationController
       render :edit
     end
   end
-
+  
   def destroy
     @task = Task.find(params[:id])
     if @task.destroy
@@ -44,8 +46,14 @@ class TasksController < ApplicationController
       render :index
     end
   end
-
+  
   private
+  
+  def basic
+    authenticate_or_request_with_http_basic do |name, password|
+      name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASSWORD']
+    end
+  end
 
   def task_params
     params.require(:task).permit(:title, :content)
