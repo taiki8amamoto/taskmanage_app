@@ -194,6 +194,8 @@ ja:
       show: Taskの詳細を確認する
       edit: Taskを編集する
       destroy: Taskを削除する
+      confirm_edit: 編集しますか？
+      confirm_destroy: 削除しますか？
     show:
       show_a_task_detail: Taskの詳細
       title: 'タイトル： '
