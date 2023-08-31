@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :basic
+  # before_action :basic
 
   def index
     case params[:sort_expired]
@@ -11,10 +11,7 @@ class TasksController < ApplicationController
       @tasks = Task.all.order("created_at DESC")
     end
   end
-
-  def sort_deadline
-  end
-
+  
   def new
     @task = Task.new
   end

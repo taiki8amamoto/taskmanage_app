@@ -192,7 +192,7 @@ ja:
       title: タイトル
       content: 内容
       deadline: 終了期限
-      created_at: 登録日時
+      created_at: 初回登録日時
       new: 新しくTaskを投稿する
       show: Taskの詳細を確認する
       edit: Taskを編集する
@@ -203,12 +203,12 @@ ja:
       show_a_task_detail: Taskの詳細
       title: 'タイトル： '
       content: '内容： '
+      deadline: '終了期限： '
       edit: Taskを編集する
     edit:
       edit_a_task: Taskを編集する
       errors: 件のエラーがあります。
-
-
+      default: ※未入力の場合は本日の日付が入ります。
   time:
     am: 午前
     formats:

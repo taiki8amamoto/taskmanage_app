@@ -31,13 +31,13 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'webdrivers'
   gem 'rexml'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
+  gem "selenium-webdriver"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
