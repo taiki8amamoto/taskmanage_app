@@ -1,8 +1,18 @@
 <h1><%= t('.task_list') %></h1>
+<%= link_to t('.new'), new_task_path %>
+<br>
 <table>
   <tr>
     <th><%= t('.title') %></th>
     <th><%= t('.content') %></th>
+    <% case params[:sort_expired] %>
+    <% when "desc" %>
+    <th><%= link_to t('.deadline'), tasks_path(sort_expired: "asc") %></th>
+    <% when "asc" %>
+    <th><%= link_to t('.deadline'), tasks_path(sort_expired: "desc") %></th>
+    <% else %>
+    <th><%= link_to t('.deadline'), tasks_path(sort_expired: "desc") %></th>
+    <% end %>
     <th><%= t('.created_at') %></th>
   </tr>
 
@@ -10,6 +20,7 @@
     <tr>
       <td class='task_row' ><%= task.title %></td>
       <td class='task_row' ><%= task.content %></td>
+      <td class='task_row' ><%= task.deadline.strftime('%Y/%m/%d') %></td>
       <td class='task_row' ><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
       <td><%= link_to t('.show'), task_path(task.id) %></td>
       <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')} %></td>
@@ -17,6 +28,3 @@
     </tr>
   <% end %>
 </table>
-
-<br>
-<%= link_to t('.new'), new_task_path %>

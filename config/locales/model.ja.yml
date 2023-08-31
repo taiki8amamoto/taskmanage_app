@@ -7,6 +7,7 @@ ja:
       task:
         title: タイトル
         content: 内容
+        deadline: 終了期限
       user:
         name: 名前
         email: メールアドレス
