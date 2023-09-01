@@ -23,5 +23,9 @@
   <%= form.label :deadline %>
   <%= form.datetime_field :deadline %>
   </div>
+  <div>
+  <%= form.label :progress %>
+  <%= form.select :progress, Task.enum_options_for_select(:progress) %>
+  </div>
   <%= form.submit %>
 <% end %>
