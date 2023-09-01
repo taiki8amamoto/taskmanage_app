@@ -33,18 +33,20 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクが終了期限の降順に並んでいる場合' do
       it '終了期限が若いタスクが最下行に表示される' do
         click_link '終了期限'
+        sleep 0.5
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'test title 1'
       end
     end
-    # context 'タスクが終了期限の昇順に並んでいる場合' do
-    #   it '終了期限が若いタスクが一番上に表示される' do
-    #     click_link '終了期限'
-    #     click_link '終了期限'
-    #     task_list = all('.task_row')
-    #     expect(task_list[0]).to have_content 'test title 3'
-    #   end
-    # end
+    context 'タスクが終了期限の昇順に並んでいる場合' do
+      it '終了期限が若いタスクが一番上に表示される' do
+        click_link '終了期限'
+        sleep 0.5
+        click_link '終了期限'
+        sleep 0.5
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content 'test title 3'
+      end
     end
   end
   describe '詳細表示機能' do
