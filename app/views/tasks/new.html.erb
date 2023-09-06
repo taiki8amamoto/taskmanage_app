@@ -28,5 +28,8 @@
   <%= form.label :progress %>
   <%= form.select :progress, Task.enum_options_for_select(:progress) %>
   </div>
+  <%= form.label :priority %>
+  <%= form.select :priority, Task.enum_options_for_select(:priority) %>
+  </div>
   <%= form.submit %>
 <% end %>

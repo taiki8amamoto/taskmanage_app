@@ -209,6 +209,7 @@ ja:
       content: '内容： '
       deadline: '終了期限： '
       progress: '進捗状況： '
+      priority: '進捗状況： '
       edit: Taskを編集する
     edit:
       edit_a_task: Taskを編集する
