@@ -114,6 +114,7 @@ ja:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"
   flash:
+    search: そのようなTaskはありません
     create: Taskの登録に失敗しました
     update: Taskの更新に失敗しました
     destroy: Taskの削除に失敗しました
@@ -189,6 +190,7 @@ ja:
       expiry_default: ※未入力の場合は本日の日付が入ります。
     index:
       task_list: Task一覧
+      search: 検索する
       title: タイトル
       content: 内容
       deadline: 終了期限
@@ -215,7 +217,7 @@ ja:
     am: 午前
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
-      long: "%Y/%m/%d %H:%M"
-      short: "%m/%d %H:%M"
+      long: "%Y年%m月%d日 (%a) %H:%M"
+      short: "%m月%d日 (%a)"
     pm: 午後
 

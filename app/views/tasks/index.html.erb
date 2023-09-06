@@ -1,16 +1,21 @@
 <h1><%= t('.task_list') %></h1>
+<%= form_with scope: :search, url: tasks_path, method: :get, local: true do |form| %>
+  <%= t('.title') %>　<%= form.search_field :title, placeholder: "検索..." %>
+  <%= t('.progress') %>　<%= form.select :progress, Task.enum_options_for_select(:progress), include_blank: "選択してください" %>
+  <%= form.submit t('.search') %>
+<% end %>
 <%= link_to t('.new'), new_task_path %>
 <table>
   <tr>
     <th><%= t('.title') %></th>
     <th><%= t('.content') %></th>
-    <% case params[:sort_expired] %>
+    <% case params[:sort_deadline] %>
     <% when "desc" %>
-    <th><%= link_to t('.deadline'), tasks_path(sort_expired: "asc") %></th>
+    <th><%= link_to t('.deadline'), tasks_path(sort_deadline: "asc") %></th>
     <% when "asc" %>
-    <th><%= link_to t('.deadline'), tasks_path(sort_expired: "desc") %></th>
+    <th><%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %></th>
     <% else %>
-    <th><%= link_to t('.deadline'), tasks_path(sort_expired: "desc") %></th>
+    <th><%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %></th>
     <% end %>
     <th><%= t('.created_at') %></th>
     <th><%= t('.progress') %></th>
@@ -21,8 +26,8 @@
     <tr>
       <td class='task_row' ><%= task.title %></td>
       <td class='task_row' ><%= task.content %></td>
-      <td class='task_row' ><%= task.deadline.strftime('%Y/%m/%d') %></td>
-      <td class='task_row' ><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+      <td class='task_row' ><%= l task.deadline, format: :long %></td>
+      <td class='task_row' ><%= l task.created_at, format: :long %></td>
       <td class='task_row' ><%= task.human_attribute_enum(:progress) %></td>
       <td><%= link_to t('.show'), task_path(task.id) %></td>
       <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')} %></td>

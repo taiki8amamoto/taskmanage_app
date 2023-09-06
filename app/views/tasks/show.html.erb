@@ -1,7 +1,7 @@
 <h1> <%= t('.show_a_task_detail') %></h1>
 <p><%= t('.title') %> <%= @task.title %></p>
 <p><%= t('.content') %><%= @task.content %></p>
-<p><%= t('.deadline') %><%= @task.deadline.strftime('%Y/%m/%d') %></p>
+<p><%= t('.deadline') %><%= l @task.deadline, format: :long %></p>
 <p><%= t('.progress') %><%= @task.human_attribute_enum(:progress) %></p>
 <br>
 <%= link_to t('.edit'), edit_task_path(@task.id) %>

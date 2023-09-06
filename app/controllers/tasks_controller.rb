@@ -2,13 +2,22 @@ class TasksController < ApplicationController
   # before_action :basic
 
   def index
-    case params[:sort_expired]
+    case params[:sort_deadline]
     when "desc"
       @tasks = Task.all.order("deadline DESC")
     when "asc"
       @tasks = Task.all.order("deadline ASC")
     else
       @tasks = Task.all.order("created_at DESC")
+    end
+    if params[:search].present?
+      if params[:search][:title].present? && params[:search][:progress].present?
+        @tasks = @tasks.search_by_title_and_progress(params[:search])
+      elsif params[:search][:title].present?
+        @tasks = @tasks.search_by_title(params[:search])
+      elsif params[:search][:progress].present?
+        @tasks = @tasks.search_by_progress(params[:search])
+      end
     end
   end
   
