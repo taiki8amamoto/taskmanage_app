@@ -198,9 +198,9 @@ ja:
       progress: 進捗状況
       priority: 優先度
       new: 新しくTaskを投稿する
-      show: Taskの詳細を確認する
-      edit: Taskを編集する
-      destroy: Taskを削除する
+      show: 詳細
+      edit: 編集
+      destroy: 削除
       confirm_edit: 編集しますか？
       confirm_destroy: 削除しますか？
     show:
@@ -209,7 +209,7 @@ ja:
       content: '内容： '
       deadline: '終了期限： '
       progress: '進捗状況： '
-      priority: '進捗状況： '
+      priority: '優先度： '
       edit: Taskを編集する
     edit:
       edit_a_task: Taskを編集する

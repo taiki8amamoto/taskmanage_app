@@ -75,8 +75,8 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '該当タスクの内容が表示される' do
         visit tasks_path
         task = Task.find_by(title: 'test title 2')
-        expect(page).to have_link '詳細を確認する', href: task_path(task)
-        click_link '詳細を確認する', href: task_path(task)
+        expect(page).to have_link '詳細', href: task_path(task)
+        click_link '詳細', href: task_path(task)
         expect(page).to have_content 'test title 2'
         expect(page).to have_content 'test content 2'
       end

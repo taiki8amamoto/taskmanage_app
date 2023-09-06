@@ -9,6 +9,7 @@ ja:
         content: 内容
         deadline: 終了期限
         progress: 進捗状況
+        priority: 優先度
       task/progress:
         not_started: 未着手
         in_progress: 着手中
