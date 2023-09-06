@@ -19,7 +19,14 @@
     <% end %>
     <th><%= t('.created_at') %></th>
     <th><%= t('.progress') %></th>
-
+    <% case params[:sort_priority] %>
+    <% when "desc" %>
+    <th><%= link_to t('.priority'), tasks_path(sort_priority: "asc") %></th>
+    <% when "asc" %>
+    <th><%= link_to t('.priority'), tasks_path(sort_priority: "desc") %></th>
+    <% else %>
+    <th><%= link_to t('.priority'), tasks_path(sort_priority: "desc") %></th>
+    <% end %>
   </tr>
 
   <% @tasks.each do |task| %>
@@ -29,6 +36,7 @@
       <td class='task_row' ><%= l task.deadline, format: :long %></td>
       <td class='task_row' ><%= l task.created_at, format: :long %></td>
       <td class='task_row' ><%= task.human_attribute_enum(:progress) %></td>
+      <td class='task_row' ><%= task.human_attribute_enum(:priority) %></td>
       <td><%= link_to t('.show'), task_path(task.id) %></td>
       <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')} %></td>
       <td><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: {confirm: t('.confirm_destroy')} %></td>

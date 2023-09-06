@@ -196,6 +196,7 @@ ja:
       deadline: 終了期限
       created_at: 初回登録日時
       progress: 進捗状況
+      priority: 優先度
       new: 新しくTaskを投稿する
       show: Taskの詳細を確認する
       edit: Taskを編集する

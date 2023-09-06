@@ -10,6 +10,14 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order("created_at DESC")
     end
+    case params[:sort_priority]
+    when "desc"
+      @tasks = Task.all.order("priority DESC")
+    when "asc"
+      @tasks = Task.all.order("priority ASC")
+    else
+      @tasks = Task.all.order("created_at DESC")
+    end
     if params[:search].present?
       if params[:search][:title].present? && params[:search][:progress].present?
         @tasks = @tasks.search_by_title_and_progress(params[:search])

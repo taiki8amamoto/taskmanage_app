@@ -13,6 +13,10 @@ ja:
         not_started: 未着手
         in_progress: 着手中
         done: 完了
+      task/priority:
+        low: 低
+        mid: 中
+        high: 高
       user:
         name: 名前
         email: メールアドレス
