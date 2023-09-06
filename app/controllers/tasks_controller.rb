@@ -25,6 +25,7 @@ class TasksController < ApplicationController
         @tasks = @tasks.search_by_progress(params[:search])
       end
     end
+    @tasks = @tasks.page(params[:page]).per(100)
   end
   
   def new

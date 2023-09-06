@@ -31,15 +31,16 @@
 
   <% @tasks.each do |task| %>
     <tr>
-      <td class='task_row' ><%= task.title %></td>
-      <td class='task_row' ><%= task.content %></td>
-      <td class='task_row' ><%= l task.deadline, format: :long %></td>
-      <td class='task_row' ><%= l task.created_at, format: :long %></td>
-      <td class='task_row' ><%= task.human_attribute_enum(:progress) %></td>
-      <td class='task_row' ><%= task.human_attribute_enum(:priority) %></td>
-      <td><%= link_to t('.show'), task_path(task.id) %></td>
-      <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')} %></td>
-      <td><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: {confirm: t('.confirm_destroy')} %></td>
+    <td class='task_row' ><%= task.title %></td>
+    <td class='task_row' ><%= task.content %></td>
+    <td class='task_row' ><%= l task.deadline, format: :long %></td>
+    <td class='task_row' ><%= l task.created_at, format: :long %></td>
+    <td class='task_row' ><%= task.human_attribute_enum(:progress) %></td>
+    <td class='task_row' ><%= task.human_attribute_enum(:priority) %></td>
+    <td><%= link_to t('.show'), task_path(task.id) %></td>
+    <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')} %></td>
+    <td><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: {confirm: t('.confirm_destroy')} %></td>
     </tr>
-  <% end %>
-</table>
+    <% end %>
+    <%= paginate @tasks %>
+    </table>
