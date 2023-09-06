@@ -15,8 +15,6 @@ class TasksController < ApplicationController
       @tasks = Task.all.order("priority DESC")
     when "asc"
       @tasks = Task.all.order("priority ASC")
-    else
-      @tasks = Task.all.order("created_at DESC")
     end
     if params[:search].present?
       if params[:search][:title].present? && params[:search][:progress].present?
