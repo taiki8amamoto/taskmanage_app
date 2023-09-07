@@ -1,5 +1,9 @@
-<h1> <%= t('.show_a_task_detail') %></h1>
-<p><%= t('.title') %> <%= @task.title %></p>
-<p><%= t('.content') %><%= @task.content %></p>
-<br>
-<%= link_to t('.edit'), edit_task_path(@task.id) %>
+<div class="mx-auto" style="width: 500px">
+  <h1> <%= t('.show_a_task_detail') %></h1>
+  <p class="task_title"><%= t('.title') %> <%= @task.title %></p>
+  <p class="task_content"><%= t('.content') %><%= @task.content %></p>
+  <p class="task_deadline"><%= t('.deadline') %><%= l @task.deadline, format: :long %></p>
+  <p class="task_progress"><%= t('.progress') %><%= @task.human_attribute_enum(:progress) %></p>
+  <p class="task_priority"><%= t('.priority') %><%= @task.human_attribute_enum(:priority) %></p>
+  <%= link_to t('.edit'), edit_task_path(@task.id), class: "btn btn-info my-lg-4" %>
+</div>

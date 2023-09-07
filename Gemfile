@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
-gem 'rexml'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
@@ -16,9 +15,14 @@ gem 'dotenv-rails'
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+gem 'kaminari'
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
+  gem 'faker'
 end
 
 group :development do
@@ -30,13 +34,12 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'webdrivers'
   gem 'rexml'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'launchy'
+  gem "webdrivers"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

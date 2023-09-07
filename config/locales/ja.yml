@@ -114,6 +114,7 @@ ja:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"
   flash:
+    search: そのようなTaskはありません
     create: Taskの登録に失敗しました
     update: Taskの更新に失敗しました
     destroy: Taskの削除に失敗しました
@@ -186,32 +187,46 @@ ja:
     new:
       create_a_new_task: 新しいTaskを作成する
       errors: 件のエラーがあります。
+      expiry_default: ※未入力の場合は本日の日付が入ります。
     index:
       task_list: Task一覧
+      search: 検索する
       title: タイトル
       content: 内容
-      created_at: 登録日時
+      deadline: 終了期限
+      created_at: 初回登録日時
+      progress: 進捗状況
+      priority: 優先度
       new: 新しくTaskを投稿する
-      show: Taskの詳細を確認する
-      edit: Taskを編集する
-      destroy: Taskを削除する
+      show: 詳細
+      edit: 編集
+      destroy: 削除
       confirm_edit: 編集しますか？
       confirm_destroy: 削除しますか？
     show:
       show_a_task_detail: Taskの詳細
       title: 'タイトル： '
       content: '内容： '
+      deadline: '終了期限： '
+      progress: '進捗状況： '
+      priority: '優先度： '
       edit: Taskを編集する
     edit:
       edit_a_task: Taskを編集する
       errors: 件のエラーがあります。
-
-
+      default: ※未入力の場合は本日の日付が入ります。
   time:
     am: 午前
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
-      long: "%Y/%m/%d %H:%M"
-      short: "%m/%d %H:%M"
+      long: "%Y年%m月%d日 (%a) %H:%M"
+      short: "%m月%d日 (%a)"
     pm: 午後
+  views:
+    pagination:
+      first: "最初"
+      last: "最後"
+      previous: "« 前"
+      next: "次 »"
+      truncate: "..."
 

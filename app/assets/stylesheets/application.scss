@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+
+ .pagination {
+  justify-content: center;
+}
+
+.container {
+  max-width: 2000px
+
+}
+
+.task_title {
+  padding-top: 1rem;
+}
+
+.task_content {
+  padding-top: 1rem;
+}
+
+.task_deadline {
+  padding-top: 1rem;
+}
+
+.task_progress {
+  padding-top: 1rem;
+}
+
+.task_priority {
+  padding-top: 1rem;
+}

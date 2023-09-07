@@ -1,22 +1,57 @@
+<div class="mx-auto" style="width: 700px">
 <h1><%= t('.task_list') %></h1>
-<table>
-  <tr>
-    <th><%= t('.title') %></th>
-    <th><%= t('.content') %></th>
-    <th><%= t('.created_at') %></th>
-  </tr>
-
-  <% @tasks.each do |task| %>
-    <tr>
-      <td class='task_row' ><%= task.title %></td>
-      <td class='task_row' ><%= task.content %></td>
-      <td class='task_row' ><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-      <td><%= link_to t('.show'), task_path(task.id) %></td>
-      <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')} %></td>
-      <td><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: {confirm: t('.confirm_destroy')} %></td>
-    </tr>
+<%= form_with scope: :search, url: tasks_path, method: :get, local: true do |form| %>
+  <%= t('.title') %>　<%= form.search_field :title, placeholder: "検索..." %>
+  <%= t('.progress') %>　<%= form.select :progress, Task.enum_options_for_select(:progress), include_blank: "選択してください" %>
+  <%= form.submit t('.search'), class: "btn btn-secondary mx-lg-3" %>
   <% end %>
-</table>
-
-<br>
-<%= link_to t('.new'), new_task_path %>
+  <%= link_to t('.new'), new_task_path, class: "btn btn-primary my-lg-4" %>
+</div>
+<%= paginate @tasks %>
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 10%"><%= t('.title') %></th>
+      <th scope="col" style="width: 15%"><%= t('.content') %></th>
+      <% case params[:sort_deadline] %>
+      <% when "desc" %>
+      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "asc") %></th>
+      <% when "asc" %>
+      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %></th>
+      <% else %>
+      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %></th>
+      <% end %>
+      <th scope="col" style="width: 25%"><%= t('.created_at') %></th>
+      <th scope="col" style="width: 10%"><%= t('.progress') %></th>
+      <% case params[:sort_priority] %>
+      <% when "desc" %>
+      <th scope="col" style="width: 5%"><%= link_to t('.priority'), tasks_path(sort_priority: "asc") %></th>
+      <% when "asc" %>
+      <th scope="col" style="width: 5%"><%= link_to t('.priority'), tasks_path(sort_priority: "desc") %></th>
+      <% else %>
+      <th scope="col" style="width: 10%"><%= link_to t('.priority'), tasks_path(sort_priority: "desc") %></th>
+      <% end %>
+      <th scope="col" style="width: 4%"></th>
+      <th scope="col" style="width: 3%"></th>
+      <th scope="col" style="width: 3%"></th>
+    </tr>
+  </thead>
+  <% @tasks.each do |task| %>
+    <tbody>
+      <tr>
+        <td class='task_row' ><%= task.title %></td>
+        <td class='task_row' ><%= task.content %></td>
+        <td class='task_row' ><%= l task.deadline, format: :long %></td>
+        <td class='task_row' ><%= l task.created_at, format: :long %></td>
+        <td class='task_row' ><%= task.human_attribute_enum(:progress) %></td>
+        <td class='task_row' ><%= task.human_attribute_enum(:priority) %></td>
+        <td><%= link_to t('.show'), task_path(task.id), class: "btn btn-light" %></td>
+        <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')}, class: "btn btn-info" %></td>
+        <td><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: {confirm: t('.confirm_destroy')}, class: "btn btn-danger" %></td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+  </div>
+  <%= paginate @tasks %>
