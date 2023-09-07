@@ -18,11 +18,11 @@ class TasksController < ApplicationController
     end
     if params[:search].present?
       if params[:search][:title].present? && params[:search][:progress].present?
-        @tasks = @tasks.search_by_title_and_progress(params[:search])
+        @tasks = @tasks.search_by_title_and_progress(params[:search][:title], params[:search][:progress])
       elsif params[:search][:title].present?
-        @tasks = @tasks.search_by_title(params[:search])
+        @tasks = @tasks.search_by_title(params[:search][:title])
       elsif params[:search][:progress].present?
-        @tasks = @tasks.search_by_progress(params[:search])
+        @tasks = @tasks.search_by_progress(params[:search][:progress])
       end
     end
     @tasks = @tasks.page(params[:page]).per(100)

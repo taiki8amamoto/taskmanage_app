@@ -11,6 +11,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_link '新しくTaskを投稿する'
         fill_in 'task_title', with: 'テストだよ'
         fill_in 'task_content', with: 'テストですね'
+        select '着手中', from: 'task_progress'
+        select '高', from: 'task_priority'
+
         click_button '登録する'
         expect(page).to have_content 'テストだよ'
         expect(page).to have_content 'テストですね'
@@ -94,7 +97,6 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context 'ステータス検索をした場合' do
       it "ステータスに完全一致するタスクが絞り込まれる" do
-        # ここに実装する
         select '未着手', from: 'search_progress'
         click_button '検索する'
         expect(page).to have_content 'test title 2'
