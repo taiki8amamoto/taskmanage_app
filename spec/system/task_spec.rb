@@ -68,6 +68,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_link '優先度'
         sleep 0.5
         task_list = all('.task_row')
+        binding.irb
         expect(task_list[0]).to have_content 'test title 2'
       end
     end
