@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskmanageApp</title>
+    <title>TaskHack</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag('favicon.ico') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,7 +13,7 @@
   <body>
   <nav class="navbar navbar-expand-xl navbar-light bg-light">
     <div class="container-fluid">
-      <%= link_to "TaskManage", tasks_path, class: "btn btn-dark btn-lg" %>
+      <%= link_to image_tag('logo.png', size: '160x37'), tasks_path %>
       <% if logged_in? %>
         <ul class="navbar-nav me-auto mb-2 mb-xl-0">
           <li class="nav-item">
@@ -22,15 +22,15 @@
           <li class="nav-item">
             <%= link_to t('.task_list'), tasks_path, class: "nav-link active" %>
           </li>
-          <li class="nav-item">
-            <%= link_to t('.user'), user_path(current_user.id), class: "nav-link active" %>
-          </li>
         </ul>
         <ul class="navbar-nav ml-auto mb-2 mb-xl-0">
           <li class="nav-item">
+            <%= link_to t('.user'), user_path(current_user.id), class: "nav-link active" %>
+          </li>
+          <li class="nav-item">
             <%= link_to t('.logout'), session_path(current_user.id), method: :delete, data: {confirm: t('.confirm_logout')}, class: "nav-link active" %>
           </li>
-          <p><font size="2"><%= current_user.name %>でログイン中</p>
+          <p class="current-user"><font size="2"><%= current_user.name %><%= t('.current_user') %></p>
         </ul>
       <% else %>
         <ul class="navbar-nav ml-auto mb-2 mb-xl-0">

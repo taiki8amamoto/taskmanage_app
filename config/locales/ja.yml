@@ -175,6 +175,8 @@ ja:
       format:
         delimiter: ''
   notice: 
+    failure_sighup: 新規アカウント登録に失敗しました
+    welcome: ようこそ！
     welcome_back: お帰りなさい、
     san: さん
     not_show: 他のユーザーのマイページにはアクセスできません！
@@ -202,6 +204,7 @@ ja:
       logout: ログアウト
       signin: 新規アカウント登録
       login: ログイン
+      current_user: でログイン中
   tasks:
     new:
       create_a_new_task: 新しいTaskを作成する

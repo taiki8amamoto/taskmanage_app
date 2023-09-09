@@ -10,8 +10,10 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user.id)
-      flash[:success] = t('notice.create_user')
+      flash[:info] = t('notice.create_user')
+      flash[:success] = t('notice.welcome') + "#{current_user.name}" + t('notice.san')
     else
+      flash[:danger] = t('notice.failure_sighup')
       render :new
     end
   end
