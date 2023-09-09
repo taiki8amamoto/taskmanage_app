@@ -1,0 +1,41 @@
+<div class="mx-auto" style="width: 700px">
+<h1><%= t('.user_list') %></h1>
+  <%= link_to t('.user_create'), new_admin_user_path, class: "btn btn-outline-primary my-lg-4" %>
+</div>
+<%= paginate @users %>
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 20%"><%= t('.name') %></th>
+      <th scope="col" style="width: 40%"><%= t('.email') %></th>
+      <% case params[:sort_role] %>
+      <% when "desc" %>
+      <th scope="col" style="width: 17%"><%= link_to t('.role'), admin_users_path(sort_role: "asc") %></th>
+      <% when "asc" %>
+      <th scope="col" style="width: 17%"><%= link_to t('.role'), admin_users_path(sort_role: "desc") %></th>
+      <% else %>
+      <th scope="col" style="width: 17%"><%= link_to t('.role'), admin_users_path(sort_role: "desc") %></th>
+      <% end %>
+      <th scope="col" style="width: 12%"><%= t('.tasks') %></th>
+      <th scope="col" style="width: 3%"></th>
+      <th scope="col" style="width: 3%"></th>
+      <th scope="col" style="width: 3%"></th>
+    </tr>
+  </thead>
+  <% @users.each do |user| %>
+    <tbody>
+      <tr>
+        <td class='user_row' ><%= user.name %></td>
+        <td class='user_row' ><%= user.email %></td>
+        <td class='user_row' ><%= user.human_attribute_enum(:role) %></td>
+        <td class='user_row' ><%= user.tasks.count %><%= t('.count') %></td>
+        <td><%= link_to t('.show'), admin_user_path(user.id), class: "btn btn-outline-secondary" %></td>
+        <td><%= link_to t('.edit'), edit_admin_user_path(user.id), data: {confirm: t('.confirm_edit')}, class: "btn btn-outline-info" %></td>
+        <td><%= link_to t('.destroy'), admin_user_path(user.id), method: :delete, data: {confirm: t('.confirm_destroy')}, class: "btn btn-outline-danger" %></td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+  </div>
+  <%= paginate @users %>

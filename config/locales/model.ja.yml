@@ -25,3 +25,7 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+        role: ユーザー種別
+      user/role:
+        admin: 管理者
+        general: 一般ユーザー

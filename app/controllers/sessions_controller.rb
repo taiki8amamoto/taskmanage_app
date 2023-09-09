@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def new
+    redirect_to tasks_path if view_context.logged_in?
   end
 
   def create

@@ -12,27 +12,31 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" style="width: 3%"><%= t('.user') %></th>
+      <th scope="col" style="width: 10%"><%= t('.name') %></th>
       <th scope="col" style="width: 10%"><%= t('.title') %></th>
       <th scope="col" style="width: 16%"><%= t('.content') %></th>
+      <th scope="col" style="width: 20%">
       <% case params[:sort_deadline] %>
       <% when "desc" %>
-      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "asc") %></th>
+        <%= link_to t('.deadline'), tasks_path(sort_deadline: "asc") %>
       <% when "asc" %>
-      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %></th>
+        <%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %>
       <% else %>
-      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %></th>
+        <%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %>
       <% end %>
-      <th scope="col" style="width: 25%"><%= t('.created_at') %></th>
+      </th>
+      <th scope="col" style="width: 20%"><%= t('.created_at') %></th>
       <th scope="col" style="width: 10%"><%= t('.progress') %></th>
+      <th scope="col" style="width: 8%">
       <% case params[:sort_priority] %>
       <% when "desc" %>
-      <th scope="col" style="width: 5%"><%= link_to t('.priority'), tasks_path(sort_priority: "asc") %></th>
+        <%= link_to t('.priority'), tasks_path(sort_priority: "asc") %>
       <% when "asc" %>
-      <th scope="col" style="width: 5%"><%= link_to t('.priority'), tasks_path(sort_priority: "desc") %></th>
+        <%= link_to t('.priority'), tasks_path(sort_priority: "desc") %>
       <% else %>
-      <th scope="col" style="width: 10%"><%= link_to t('.priority'), tasks_path(sort_priority: "desc") %></th>
+        <%= link_to t('.priority'), tasks_path(sort_priority: "desc") %>
       <% end %>
+      </th>
       <th scope="col" style="width: 2%"></th>
       <th scope="col" style="width: 2%"></th>
       <th scope="col" style="width: 2%"></th>

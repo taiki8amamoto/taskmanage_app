@@ -1,6 +1,12 @@
-<h1><%= t('.mypage') %></h1>
+<% if current_user.id == @user.id %>
+  <h1><%= t('.mypage') %></h1>
+<% else %>
+  <h1><%= @user.name %><%= t('.page') %></h1>
+<% end %>
 <p class="mypage"><%= t('.name') %><%= @user.name %></p>
 <p class="mypage"><%= t('.email') %><%= @user.email %></p>
+<p class="mypage"><%= t('.role') %><%= @user.human_attribute_enum(:role) %></p>
+<%= link_to t('.edit'), edit_admin_user_path(@user.id), class: "btn btn-outline-info my-lg-4" %>
 <hr>
 <h2><%= t('.task_list') %></h2><br>
 <%= paginate @users %>
