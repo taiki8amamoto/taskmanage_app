@@ -1,19 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskmanageApp</title>
+    <title>TaskHack</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag('favicon.ico') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+      <div class="container-fluid">
+        <%= link_to image_tag('logo.png', size: '160x37', alt: "ロゴ"), tasks_path %>
+        <% if logged_in? %>
+          <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+            <li class="nav-item">
+              <%= link_to t('.new'), new_task_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t('.task_list'), tasks_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t('.user'), user_path(current_user.id), class: "nav-link active" %>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto mb-2 mb-xl-0">
+          <% if current_user.role == "admin" %>
+            <li class="nav-item">
+              <%= link_to t('.create_user'), new_admin_user_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t('.user_list'), admin_users_path, class: "nav-link active" %>
+            </li>
+          <% end %>
+            <li class="nav-item">
+              <%= link_to t('.logout'), session_path(current_user.id), method: :delete, data: {confirm: t('.confirm_logout')}, class: "nav-link active" %>
+            </li>
+            <% if current_user.role == "admin" %>
+              <p class="current-user"><font size="2"><%= current_user.name %><%= t('.current_user') %><%= t('.admin') %></p>
+            <% else %>
+              <p class="current-user"><font size="2"><%= current_user.name %><%= t('.current_user') %></p>
+            <% end %>
+          </ul>
+        <% else %>
+          <ul class="navbar-nav ml-auto mb-2 mb-xl-0">
+            <li class="nav-item">
+              <%= link_to t('.signup'), new_user_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t('.login'), new_session_path, class: "nav-link active" %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </nav>
+  </header>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:p, value, class: "alert alert-#{key}") %>
+    <% end %>
     <div class="container">
-      <p><%= notice %></p>
-      <p><%= flash[:danger] %></p>
       <%= yield %>
     </div>
   </body>

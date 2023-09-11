@@ -15,31 +15,95 @@
  */
  @import "bootstrap";
 
- .pagination {
+.pagination {
   justify-content: center;
 }
 
 .container {
-  max-width: 2000px
+  max-width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
 
+.alert {
+  width: 320px;
+  text-align: center;
+  margin-left: auto;
+}
+
+
+img {
+  margin-right: 20px;
+}
+
+h1 {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+h2 {
+  margin-top: 80px;
+}
+
+a {
+  font-size: 16px;
+}
+
+p {
+  font-size: 16px;
+}
+
+th {
+  font-size: 16px;
+}
+
+td {
+  font-size: 16px;
+}
+
+form {
+  font-size: 16px;
+}
+
+input {
+  margin-right: 30px;
+}
+
+select {
+  height: 30px;
+  margin-right: 30px;
 }
 
 .task_title {
   padding-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .task_content {
+  margin-bottom: 1rem;
   padding-top: 1rem;
 }
 
 .task_deadline {
+  margin-bottom: 1rem;
   padding-top: 1rem;
 }
 
 .task_progress {
+  margin-bottom: 1rem;
   padding-top: 1rem;
 }
 
 .task_priority {
+  margin-bottom: 1rem;
   padding-top: 1rem;
+}
+
+p.current-user {
+  margin-left: 20px;
+}
+
+p.mypage {
+  margin-top: 16px;
+  padding-bottom: 16px;
 }

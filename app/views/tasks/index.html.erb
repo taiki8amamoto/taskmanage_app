@@ -1,54 +1,60 @@
 <div class="mx-auto" style="width: 700px">
 <h1><%= t('.task_list') %></h1>
 <%= form_with scope: :search, url: tasks_path, method: :get, local: true do |form| %>
-  <%= t('.title') %>　<%= form.search_field :title, placeholder: "検索..." %>
-  <%= t('.progress') %>　<%= form.select :progress, Task.enum_options_for_select(:progress), include_blank: "選択してください" %>
-  <%= form.submit t('.search'), class: "btn btn-secondary mx-lg-3" %>
+  <%= t('.title') %>　<%= form.search_field :title, placeholder: t('.placeholder') %>
+  <%= t('.progress') %>　<%= form.select :progress, Task.enum_options_for_select(:progress), include_blank: t('.select') %>
+  <%= form.submit t('.search'), class: "btn btn-outline-secondary mx-lg-3" %>
   <% end %>
-  <%= link_to t('.new'), new_task_path, class: "btn btn-primary my-lg-4" %>
+  <%= link_to t('.new'), new_task_path, class: "btn btn-outline-primary my-lg-4" %>
 </div>
 <%= paginate @tasks %>
 <div class="container">
 <table class="table">
   <thead>
     <tr>
+      <th scope="col" style="width: 10%"><%= t('.name') %></th>
       <th scope="col" style="width: 10%"><%= t('.title') %></th>
-      <th scope="col" style="width: 15%"><%= t('.content') %></th>
+      <th scope="col" style="width: 16%"><%= t('.content') %></th>
+      <th scope="col" style="width: 20%">
       <% case params[:sort_deadline] %>
       <% when "desc" %>
-      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "asc") %></th>
+        <%= link_to t('.deadline'), tasks_path(sort_deadline: "asc") %>
       <% when "asc" %>
-      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %></th>
+        <%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %>
       <% else %>
-      <th scope="col" style="width: 20%"><%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %></th>
+        <%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %>
       <% end %>
-      <th scope="col" style="width: 25%"><%= t('.created_at') %></th>
+      </th>
+      <th scope="col" style="width: 20%"><%= t('.created_at') %></th>
       <th scope="col" style="width: 10%"><%= t('.progress') %></th>
+      <th scope="col" style="width: 8%">
       <% case params[:sort_priority] %>
       <% when "desc" %>
-      <th scope="col" style="width: 5%"><%= link_to t('.priority'), tasks_path(sort_priority: "asc") %></th>
+        <%= link_to t('.priority'), tasks_path(sort_priority: "asc") %>
       <% when "asc" %>
-      <th scope="col" style="width: 5%"><%= link_to t('.priority'), tasks_path(sort_priority: "desc") %></th>
+        <%= link_to t('.priority'), tasks_path(sort_priority: "desc") %>
       <% else %>
-      <th scope="col" style="width: 10%"><%= link_to t('.priority'), tasks_path(sort_priority: "desc") %></th>
+        <%= link_to t('.priority'), tasks_path(sort_priority: "desc") %>
       <% end %>
-      <th scope="col" style="width: 4%"></th>
-      <th scope="col" style="width: 3%"></th>
-      <th scope="col" style="width: 3%"></th>
+      </th>
+      <th scope="col" style="width: 2%"></th>
+      <th scope="col" style="width: 2%"></th>
+      <th scope="col" style="width: 2%"></th>
     </tr>
   </thead>
   <% @tasks.each do |task| %>
     <tbody>
       <tr>
+        <td class='task_row' ><%= task.user.name %></td>
         <td class='task_row' ><%= task.title %></td>
         <td class='task_row' ><%= task.content %></td>
         <td class='task_row' ><%= l task.deadline, format: :long %></td>
         <td class='task_row' ><%= l task.created_at, format: :long %></td>
         <td class='task_row' ><%= task.human_attribute_enum(:progress) %></td>
         <td class='task_row' ><%= task.human_attribute_enum(:priority) %></td>
-        <td><%= link_to t('.show'), task_path(task.id), class: "btn btn-light" %></td>
-        <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')}, class: "btn btn-info" %></td>
-        <td><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: {confirm: t('.confirm_destroy')}, class: "btn btn-danger" %></td>
+        <td><%= link_to t('.show'), task_path(task.id), class: "btn btn-outline-secondary" %></td>
+        <td><%= link_to t('.edit'), edit_task_path(task.id), data: {confirm: t('.confirm_edit')}, class: "btn btn-outline-info" %></td>
+        <td><%= link_to t('.destroy'), task_path(task.id), method: :delete, data: {confirm: t('.confirm_destroy')}, class: "btn btn-outline-danger" %></td>
       </tr>
     </tbody>
   <% end %>

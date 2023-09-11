@@ -1,0 +1,35 @@
+<h1><%= t('.mypage') %></h1>
+<p class="mypage"><%= t('.name') %><%= @user.name %></p>
+<p class="mypage"><%= t('.email') %><%= @user.email %></p>
+<hr>
+<h2><%= t('.task_list') %></h2><br>
+<%= paginate @users %>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 10%"><%= t('.name') %></th>
+        <th scope="col" style="width: 10%"><%= t('tasks.index.title') %></th>
+        <th scope="col" style="width: 15%"><%= t('tasks.index.content') %></th>
+        <th scope="col" style="width: 20%"><%= t('tasks.index.deadline') %></th>
+        <th scope="col" style="width: 25%"><%= t('tasks.index.created_at') %></th>
+        <th scope="col" style="width: 10%"><%= t('tasks.index.progress') %></th>
+        <th scope="col" style="width: 10%"><%= t('tasks.index.priority') %></th>
+      </tr>
+    </thead>
+    <% @users.each do |task| %>
+      <tbody>
+        <tr>
+          <td class='task_row' ><%= task.user.name %></td>
+          <td class='task_row' ><%= task.title %></td>
+          <td class='task_row' ><%= task.content %></td>
+          <td class='task_row' ><%= l task.deadline, format: :long %></td>
+          <td class='task_row' ><%= l task.created_at, format: :long %></td>
+          <td class='task_row' ><%= task.human_attribute_enum(:progress) %></td>
+          <td class='task_row' ><%= task.human_attribute_enum(:priority) %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+<%= paginate @users %>

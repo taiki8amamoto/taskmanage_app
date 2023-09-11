@@ -1,0 +1,12 @@
+<h1><%= t('.login') %></h1>
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+  <p>
+  <%= f.label t('.email') %>
+  <%= f.email_field :email %>
+  </P>
+  <p>
+  <%= f.label t('.password') %>
+  <%= f.password_field :password %>
+  </P>
+  <%= f.submit t('.login'),class: "btn btn-outline-success my-lg-4" %>
+<% end %>
