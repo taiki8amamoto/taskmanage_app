@@ -1,8 +1,9 @@
 require 'rails_helper'
 RSpec.describe 'タスクモデル機能', type: :model do
-  let!(:task1) { FactoryBot.create(:task) }
-  let!(:task2) { FactoryBot.create(:second_task) }
-  let!(:task3) { FactoryBot.create(:third_task) }
+  let!(:user1) { FactoryBot.create(:user) }
+  let!(:task1) { FactoryBot.create(:task, user: user1) }
+  let!(:task2) { FactoryBot.create(:second_task, user: user1) }
+  let!(:task3) { FactoryBot.create(:third_task, user: user1) }
 
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空の場合' do
@@ -19,7 +20,8 @@ RSpec.describe 'タスクモデル機能', type: :model do
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        task = Task.new(title: '成功テスト', content: '成功テスト')
+        user_id = Task.find_by(title: 'test title 1').user_id
+        task = Task.new(title: '成功テスト', content: '成功テスト', user_id: user_id)
         expect(task).to be_valid
       end
     end
