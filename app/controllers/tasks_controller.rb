@@ -3,17 +3,17 @@ class TasksController < ApplicationController
   def index
     case params[:sort_deadline]
     when "desc"
-      @tasks = current_user.tasks.all.order("deadline DESC")
+      @tasks = current_user.tasks.all.includes(:user).order("deadline DESC")
     when "asc"
-      @tasks = current_user.tasks.all.order("deadline ASC")
+      @tasks = current_user.tasks.all.includes(:user).order("deadline ASC")
     else
-      @tasks = current_user.tasks.all.order("created_at DESC")
+      @tasks = current_user.tasks.all.includes(:user).order("created_at DESC")
     end
     case params[:sort_priority]
     when "desc"
-      @tasks = current_user.tasks.all.order("priority DESC")
+      @tasks = current_user.tasks.all.includes(:user).order("priority DESC")
     when "asc"
-      @tasks = current_user.tasks.all.order("priority ASC")
+      @tasks = current_user.tasks.all.includes(:user).order("priority ASC")
     end
     if params[:search].present?
       if params[:search][:title].present? && params[:search][:progress].present?

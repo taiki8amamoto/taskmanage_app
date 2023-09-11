@@ -29,7 +29,7 @@
         <td class='user_row' ><%= user.name %></td>
         <td class='user_row' ><%= user.email %></td>
         <td class='user_row' ><%= user.human_attribute_enum(:role) %></td>
-        <td class='user_row' ><%= user.tasks.count %><%= t('.count') %></td>
+        <td class='user_row' ><%= user.tasks.size %><%= t('.count') %></td>
         <td><%= link_to t('.show'), admin_user_path(user.id), class: "btn btn-outline-secondary" %></td>
         <td><%= link_to t('.edit'), edit_admin_user_path(user.id), data: {confirm: t('.confirm_edit')}, class: "btn btn-outline-info" %></td>
         <td><%= link_to t('.destroy'), admin_user_path(user.id), method: :delete, data: {confirm: t('.confirm_destroy')}, class: "btn btn-outline-danger" %></td>

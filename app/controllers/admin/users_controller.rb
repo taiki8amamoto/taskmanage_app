@@ -6,11 +6,11 @@ class Admin::UsersController < ApplicationController
   def index
     case params[:sort_role]
     when "desc"
-      @users = User.all.order("role DESC")
+      @users = User.all.includes(:tasks).order("role DESC")
     when "asc"
-      @users = User.all.order("role ASC")
+      @users = User.all.includes(:tasks).order("role ASC")
     else
-      @users = User.all
+      @users = User.all.includes(:tasks)
     end
     @users = @users.page(params[:page]).per(10)
     unless current_user.role == "admin"
