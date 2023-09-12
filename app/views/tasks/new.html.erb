@@ -34,7 +34,13 @@
     <%= form.select :priority, Task.enum_options_for_select(:priority) %>
     </div>
     <div>
-    <%= form.submit class: "btn btn-outline-success my-lg-4" %>
+    <% Label.all.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+      <%= label.name %>
+    <% end %>
+    </div><br>
+    <div>
+      <%= form.submit class: "btn btn-outline-success my-lg-4" %>
     </div>
   <% end %>
 </div>

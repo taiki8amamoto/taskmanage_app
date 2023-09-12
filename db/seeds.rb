@@ -6,6 +6,8 @@ end
   User.create!(name: "test0#{(n + 3).to_s}", email: "test0#{(n + 3).to_s}@example.com", password: "password", role: 5)
 end
 
+labels = ["プログラミング", "暮らし", "キャリア", "趣味", "その他"]
+
 titles = ["学習", "家事", "就活", "その他"]
 study_contents = ["テキストを進める", "チェリー本を読む", "昨日の復習する", "明日の予習する", "技術記事を読む"]
 housework_contents = ["掃除機かける", "エアコンフィルターの清掃", "買い物に行く", "風呂掃除する", "洗濯する"]
