@@ -2,12 +2,12 @@
   User.create!(name: "test0#{(n + 1).to_s}", email: "test0#{(n + 1).to_s}@example.com", password: "password", role: 0)
 end
 
-10.times do |n|
+8.times do |n|
   User.create!(name: "test0#{(n + 3).to_s}", email: "test0#{(n + 3).to_s}@example.com", password: "password", role: 5)
 end
 
-labels = ["プログラミング", "暮らし", "キャリア", "趣味", "その他"]
-5.times do |n|
+labels = ["プログラミング", "暮らし", "キャリア", "趣味", "Ruby", "Rails", "就職エージェント", "書籍", "時短", "その他"]
+10.times do |n|
   Label.create!(name: labels[n])
 end
 
@@ -22,9 +22,9 @@ progresses = [0, 5, 10]
 created_at_from = Time.parse('2022-01-01 00:00:00')
 created_at_to   = Time.parse('2022-12-31 00:00:00')
 priorities = [0, 5, 10]
-user_ids = (1..12).to_a
+user_ids = (1..10).to_a
 
-5000.times do
+10.times do
   title = titles.sample
   case title
   when "学習"

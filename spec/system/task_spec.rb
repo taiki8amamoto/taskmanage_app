@@ -45,7 +45,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
         task_list = all('.task_row')
-        expect(task_list[1]).to have_content 'test title 3'
+        expect(task_list[2]).to have_content 'test title 3'
       end
     end
     context 'タスクが終了期限の降順に並んでいる場合' do
@@ -53,7 +53,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_link '終了期限'
         sleep 0.5
         task_list = all('.task_row')
-        expect(task_list[1]).to have_content 'test title 1'
+        expect(task_list[2]).to have_content 'test title 1'
       end
     end
     context 'タスクが終了期限の昇順に並んでいる場合' do
@@ -63,7 +63,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_link '終了期限'
         sleep 0.5
         task_list = all('.task_row')
-        expect(task_list[1]).to have_content 'test title 3'
+        expect(task_list[2]).to have_content 'test title 3'
       end
     end
     context 'タスクが優先度の降順に並んでいる場合' do
@@ -71,7 +71,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_link '優先度'
         sleep 0.5
         task_list = all('.task_row')
-        expect(task_list[1]).to have_content 'test title 3'
+        expect(task_list[2]).to have_content 'test title 3'
       end
     end
     context 'タスクが優先度の昇順に並んでいる場合' do
@@ -81,7 +81,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_link '優先度'
         sleep 0.5
         task_list = all('.task_row')
-        expect(task_list[1]).to have_content 'test title 2'
+        expect(task_list[2]).to have_content 'test title 2'
       end
     end
   end
