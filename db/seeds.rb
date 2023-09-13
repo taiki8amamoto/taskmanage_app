@@ -7,6 +7,9 @@ end
 end
 
 labels = ["プログラミング", "暮らし", "キャリア", "趣味", "その他"]
+5.times do |n|
+  Label.create!(name: labels[n])
+end
 
 titles = ["学習", "家事", "就活", "その他"]
 study_contents = ["テキストを進める", "チェリー本を読む", "昨日の復習する", "明日の予習する", "技術記事を読む"]

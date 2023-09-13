@@ -257,6 +257,7 @@ ja:
       task_list: My Task一覧
       placeholder: "検索..."
       select: 選択してください
+      label: ラベル
       search: 検索する
       info_0: 該当する結果はありません
       name: ユーザー
