@@ -1,13 +1,12 @@
 class TasksController < ApplicationController
 
   def index
+    @tasks = current_user.tasks.all.includes(:user).order("created_at DESC")
     case params[:sort_deadline]
     when "desc"
       @tasks = current_user.tasks.all.includes(:user).order("deadline DESC")
     when "asc"
       @tasks = current_user.tasks.all.includes(:user).order("deadline ASC")
-    else
-      @tasks = current_user.tasks.all.includes(:user).order("created_at DESC")
     end
     case params[:sort_priority]
     when "desc"
@@ -16,18 +15,18 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.all.includes(:user).order("priority ASC")
     end
     if params[:search].present?
-      if params[:search][:title].present? && params[:search][:progress].present?
-        @tasks = @tasks.search_by_title_and_progress(params[:search][:title], params[:search][:progress])
-      elsif params[:search][:title].present?
+      if params[:search][:title].present?
         @tasks = @tasks.search_by_title(params[:search][:title])
-      elsif params[:search][:progress].present?
+      end
+      if params[:search][:progress].present?
         @tasks = @tasks.search_by_progress(params[:search][:progress])
       end
-      if @tasks.empty?
-        flash.now[:info] = t('..info_0') 
-      else
-        flash.now[:info] = "#{@tasks.count}" + t('notice.info')
+      if params[:search][:label].present?
+        label = params[:search][:label]
+        task_id = Tag.where(label_id: label).pluck(:task_id)
+        @tasks = @tasks.where(id: task_id)
       end
+      flash.now[:info] = "#{@tasks.count}" + t('notice.info')
     end
     @tasks = @tasks.page(params[:page]).per(100)
   end
@@ -90,6 +89,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :progress, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :progress, :priority, label_ids: [])
   end
 end

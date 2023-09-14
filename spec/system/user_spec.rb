@@ -49,7 +49,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       fill_in 'session_email', with: 'name2@example.com'
       fill_in 'session_password', with: 'password'
       click_button 'ログイン'
-      visit user_path(1)
+      visit user_path(user3)
       expect(page).to have_content '他のユーザー詳細を確認するためには管理者権限が必要です'
     end
     it 'ログアウトができること' do

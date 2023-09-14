@@ -2,7 +2,8 @@
 <h1><%= t('.task_list') %></h1>
 <%= form_with scope: :search, url: tasks_path, method: :get, local: true do |form| %>
   <%= t('.title') %>　<%= form.search_field :title, placeholder: t('.placeholder') %>
-  <%= t('.progress') %>　<%= form.select :progress, Task.enum_options_for_select(:progress), include_blank: t('.select') %>
+  <%= t('.progress') %>　<%= form.select :progress, Task.enum_options_for_select(:progress), include_blank: t('.select') %><br>
+  <%= t('.label') %>　<%= form.select :label, Label.all.collect { |p| [ p.name, p.id ] }, include_blank: t('.select') %>
   <%= form.submit t('.search'), class: "btn btn-outline-secondary mx-lg-3" %>
   <% end %>
   <%= link_to t('.new'), new_task_path, class: "btn btn-outline-primary my-lg-4" %>
@@ -12,10 +13,11 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" style="width: 10%"><%= t('.name') %></th>
+      <th scope="col" style="width: 8%"><%= t('.name') %></th>
+      <th scope="col" style="width: 12%"><%= t('.label') %></th>
       <th scope="col" style="width: 10%"><%= t('.title') %></th>
-      <th scope="col" style="width: 16%"><%= t('.content') %></th>
-      <th scope="col" style="width: 20%">
+      <th scope="col" style="width: 14%"><%= t('.content') %></th>
+      <th scope="col" style="width: 16%">
       <% case params[:sort_deadline] %>
       <% when "desc" %>
         <%= link_to t('.deadline'), tasks_path(sort_deadline: "asc") %>
@@ -25,7 +27,7 @@
         <%= link_to t('.deadline'), tasks_path(sort_deadline: "desc") %>
       <% end %>
       </th>
-      <th scope="col" style="width: 20%"><%= t('.created_at') %></th>
+      <th scope="col" style="width: 16%"><%= t('.created_at') %></th>
       <th scope="col" style="width: 10%"><%= t('.progress') %></th>
       <th scope="col" style="width: 8%">
       <% case params[:sort_priority] %>
@@ -46,6 +48,11 @@
     <tbody>
       <tr>
         <td class='task_row' ><%= task.user.name %></td>
+        <td class='task_row' >
+        <% task.labels.each do |label| %>
+          <%= label.name %>
+        <% end %>
+        </td>
         <td class='task_row' ><%= task.title %></td>
         <td class='task_row' ><%= task.content %></td>
         <td class='task_row' ><%= l task.deadline, format: :long %></td>

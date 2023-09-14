@@ -42,13 +42,6 @@ RSpec.describe 'タスクモデル機能', type: :model do
         expect(Task.search_by_progress('5').count).to eq 1
       end
     end
-    context 'タイトルのあいまい検索とステータス検索をした場合' do
-      it '検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる' do
-        expect(Task.search_by_title_and_progress('title','5')).to include(task1)
-        expect(Task.search_by_title_and_progress('title','5')).not_to include(task2)
-        expect(Task.search_by_title_and_progress('title','5').count).to eq 1
-      end
-    end
   end
 
 end
