@@ -48,11 +48,7 @@
     <tbody>
       <tr>
         <td class='task_row' ><%= task.user.name %></td>
-        <td class='task_row' >
-        <% task.labels.each do |label| %>
-          <%= label.name %>
-        <% end %>
-        </td>
+        <td class='task_row' ><%= h(task.labels.pluck(:name).join("\n")).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
         <td class='task_row' ><%= task.title %></td>
         <td class='task_row' ><%= task.content %></td>
         <td class='task_row' ><%= l task.deadline, format: :long %></td>
